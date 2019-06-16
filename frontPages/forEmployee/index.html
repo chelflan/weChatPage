@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>信访平台</title>
-    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui-for-work.css" type="text/css">
+    <link rel="stylesheet" href="../css/weui.css" type="text/css">
+    <link rel="stylesheet" href="../css/example.css" type="text/css">
+
     <style>
 
     </style>
@@ -14,15 +16,16 @@
         <div class="page__bd" style="height: 100%;">
             <div class="weui-tab">
                 <div class="weui-tab__panel">
+                    <router-view></router-view>
                 </div>
                 <div class="weui-tabbar">
-                    <a href="javascript:;" class="weui-tabbar__item">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                    <a @click="changeTab('1')" class="weui-tabbar__item " v-bind:class="{'weui-bar__item_on':isActive==1 }">
+                        <img src="../images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
                         <p class="weui-tabbar__label">写信</p>
                     </a>
-                    <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                    <a @click="changeTab('2')" class="weui-tabbar__item" v-bind:class="{'weui-bar__item_on':isActive==2 }">
                     <span style="display: inline-block;position: relative;">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                        <img src="../images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
                         <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
                     </span>
                         <p class="weui-tabbar__label">我的信件</p>
@@ -33,11 +36,27 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<script src="route.js"></script>
 <script>
+
     var app = new Vue({
+        router:router,
         el: '#app',
         data: {
-            message: 'Hello Vue!'
+            message: 'Hello Vue!',
+            isActive:1
+        },
+        methods:{
+            changeTab(val){
+                this.isActive = val;
+                if(val == 1){
+                    this.$router.push('/bar')
+                }else {
+                    this.$router.push('/foo')
+                }
+
+            }
         }
     })
 </script>
