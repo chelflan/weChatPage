@@ -1,0 +1,9 @@
+
+.setWidth{
+    width: 30px;
+    display:inline-flex;
+}
+
+[v-cloak] {
+    display: none !important;
+}
